@@ -77,4 +77,10 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             }
         }
     }
+
+    fun claimArcadeRewards(creditsEarned: Int, dataEarned: Int) {
+        viewModelScope.launch {
+            repository.addArcadeRewards(creditsEarned, dataEarned)
+        }
+    }
 }

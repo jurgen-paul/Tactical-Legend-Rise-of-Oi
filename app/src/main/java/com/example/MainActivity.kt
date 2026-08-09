@@ -55,6 +55,7 @@ fun MainAppContent(
         Screen.Campaign,
         Screen.Squad,
         Screen.Armory,
+        Screen.Arcade,
         Screen.Codex
     )
 
@@ -124,6 +125,7 @@ fun MainAppContent(
                     onNavigateToCampaign = { navController.navigate(Screen.Campaign.route) },
                     onNavigateToSquad = { navController.navigate(Screen.Squad.route) },
                     onNavigateToArmory = { navController.navigate(Screen.Armory.route) },
+                    onNavigateToArcade = { navController.navigate(Screen.Arcade.route) },
                     onNavigateToCodex = { navController.navigate(Screen.Codex.route) },
                     onLaunchMission = { missionId ->
                         battleViewModel.startMission(missionId, heroes, gearList)
@@ -168,6 +170,15 @@ fun MainAppContent(
                     },
                     onUnequipItem = { gearId, heroId, gearType ->
                         mainViewModel.unequipItem(gearId, heroId, gearType)
+                    }
+                )
+            }
+
+            composable(Screen.Arcade.route) {
+                ArcadeScreen(
+                    profile = profile,
+                    onClaimRewards = { credits, data ->
+                        mainViewModel.claimArcadeRewards(credits, data)
                     }
                 )
             }

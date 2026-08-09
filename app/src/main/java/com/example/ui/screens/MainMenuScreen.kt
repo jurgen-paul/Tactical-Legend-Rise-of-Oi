@@ -35,6 +35,7 @@ fun MainMenuScreen(
     onNavigateToCampaign: () -> Unit,
     onNavigateToSquad: () -> Unit,
     onNavigateToArmory: () -> Unit,
+    onNavigateToArcade: () -> Unit,
     onNavigateToCodex: () -> Unit,
     onLaunchMission: (Int) -> Unit
 ) {
@@ -301,12 +302,28 @@ fun MainMenuScreen(
                     )
 
                     HubButton(
+                        title = "Cyber Arcade",
+                        subtitle = "Hack Simulator",
+                        icon = Icons.Default.SportsEsports,
+                        color = CyberGreen,
+                        modifier = Modifier
+                            .weight(1f)
+                            .testTag("nav_arcade_button"),
+                        onClick = onNavigateToArcade
+                    )
+                }
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(12.dp)
+                ) {
+                    HubButton(
                         title = "Tactical Codex",
                         subtitle = "Lore & Intel",
                         icon = Icons.Default.MenuBook,
                         color = CyberPurple,
                         modifier = Modifier
-                            .weight(1f)
+                            .fillMaxWidth()
                             .testTag("nav_codex_button"),
                         onClick = onNavigateToCodex
                     )

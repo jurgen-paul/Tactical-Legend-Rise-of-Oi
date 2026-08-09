@@ -9,6 +9,7 @@ sealed class Screen(val route: String, val title: String, val icon: ImageVector)
     object Campaign : Screen("campaign", "Campaign", Icons.Default.Map)
     object Squad : Screen("squad", "Oi Squad", Icons.Default.Groups)
     object Armory : Screen("armory", "Armory", Icons.Default.Shield)
+    object Arcade : Screen("arcade", "Arcade", Icons.Default.SportsEsports)
     object Codex : Screen("codex", "Codex", Icons.Default.MenuBook)
     object Battle : Screen("battle/{missionId}", "Tactical Battle", Icons.Default.SportsEsports) {
         fun createRoute(missionId: Int) = "battle/$missionId"

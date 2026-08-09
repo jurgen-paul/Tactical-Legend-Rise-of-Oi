@@ -193,6 +193,12 @@ class GameRepository(private val db: AppDatabase) {
         return newGear
     }
 
+    suspend fun addArcadeRewards(creditsEarned: Int, dataEarned: Int) {
+        if (creditsEarned > 0 || dataEarned > 0) {
+            db.playerDao().addRewards(creditsEarned, dataEarned)
+        }
+    }
+
     suspend fun processVictoryRewards(mission: CampaignMission, expGain: Int = 60) {
         db.playerDao().addRewards(mission.rewardCredits, mission.rewardData)
         db.playerDao().incrementVictories()
