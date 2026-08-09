@@ -1,0 +1,6 @@
+{
+  "name": "Tactical Legend: Rise of Oi",
+  "description": "A turn-based tactical squad RPG strategy game set in a cyberpunk dystopia. Command 'The Oi' squad, customize cyber gear, and battle in grid campaigns.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
