@@ -19,6 +19,13 @@ An immersive, turn-based tactical squad RPG set in a dystopian cyberpunk univers
 - **Boss Battles**: Engage heavily armored enemy commanders with unique attack patterns and higher health pools.
 - **Synthesized Audio Engine**: Zero-dependency `SoundManager` generating high-tech audio feedback for movement, laser attacks, shield boosts, and victory fanfares.
 
+### 🛒 Black Market Cyber Store & Payments Module
+- **In-App Purchase Store**: Cyberpunk Black Market store featuring Credit Vault Bundles, Exclusive Legendary Weapons, and VIP Cyber Passes.
+- **Credit Vault Packs**: Instantly purchase Cyber Credits and Tactical Data ($0.99 for 1.2k CR, $2.99 for 4.5k CR, $9.99 for 15k Mega Vault).
+- **Direct Legendary Purchases**: Acquire top-tier weapons like the *Plasma Singularity Scythe* (+65 ATK) and *Aegis Dreadnought Armor* (+60 DEF).
+- **Interactive Cyber Payment Gateway**: Simulated multi-method payment terminal (Google Play Billing, Cyber-Crypto Wallet, Oi Black Card) with order confirmation receipts.
+- **VIP Cyber Pass**: Unlock permanent 'Sovereign Cyber Overlord' title, credit bonuses, and XP boosts.
+
 ### 🎬 Cyber Media Cinema & Video Player Module
 - **Native Video Stream Engine**: Interactive video player powered by native `VideoView` / AndroidView controls with fallback cyber-matrix rendering.
 - **HUD Player Controls**: Play/Pause, ±10s seeking, scrubbable progress bar, volume mute toggle, and fullscreen mode.

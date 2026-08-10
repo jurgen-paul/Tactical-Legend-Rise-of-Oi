@@ -83,4 +83,25 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             repository.addArcadeRewards(creditsEarned, dataEarned)
         }
     }
+
+    fun buyCreditBundle(creditsAmount: Int, dataAmount: Int, onSuccess: () -> Unit) {
+        viewModelScope.launch {
+            repository.purchaseCreditBundle(creditsAmount, dataAmount)
+            onSuccess()
+        }
+    }
+
+    fun buyDirectGear(gear: GearEntity, onSuccess: () -> Unit) {
+        viewModelScope.launch {
+            repository.purchaseDirectGear(gear)
+            onSuccess()
+        }
+    }
+
+    fun buyVipPass(newBadgeRank: String, bonusCredits: Int, bonusData: Int, onSuccess: () -> Unit) {
+        viewModelScope.launch {
+            repository.purchaseVipPass(newBadgeRank, bonusCredits, bonusData)
+            onSuccess()
+        }
+    }
 }

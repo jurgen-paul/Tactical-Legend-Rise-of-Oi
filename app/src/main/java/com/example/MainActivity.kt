@@ -57,6 +57,7 @@ fun MainAppContent(
         Screen.Armory,
         Screen.Arcade,
         Screen.VideoPlayer,
+        Screen.Store,
         Screen.Codex
     )
 
@@ -128,6 +129,7 @@ fun MainAppContent(
                     onNavigateToArmory = { navController.navigate(Screen.Armory.route) },
                     onNavigateToArcade = { navController.navigate(Screen.Arcade.route) },
                     onNavigateToVideoPlayer = { navController.navigate(Screen.VideoPlayer.route) },
+                    onNavigateToStore = { navController.navigate(Screen.Store.route) },
                     onNavigateToCodex = { navController.navigate(Screen.Codex.route) },
                     onLaunchMission = { missionId ->
                         battleViewModel.startMission(missionId, heroes, gearList)
@@ -189,6 +191,21 @@ fun MainAppContent(
                 VideoPlayerScreen(
                     onClaimCredits = { amount ->
                         mainViewModel.claimArcadeRewards(amount, 0)
+                    }
+                )
+            }
+
+            composable(Screen.Store.route) {
+                StoreScreen(
+                    playerProfile = profile,
+                    onBuyBundle = { credits, data, onSuccess ->
+                        mainViewModel.buyCreditBundle(credits, data, onSuccess)
+                    },
+                    onBuyWeapon = { gear, onSuccess ->
+                        mainViewModel.buyDirectGear(gear, onSuccess)
+                    },
+                    onBuyVipPass = { newBadgeRank, credits, data, onSuccess ->
+                        mainViewModel.buyVipPass(newBadgeRank, credits, data, onSuccess)
                     }
                 )
             }

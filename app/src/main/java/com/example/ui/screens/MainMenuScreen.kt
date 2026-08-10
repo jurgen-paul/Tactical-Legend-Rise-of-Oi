@@ -37,6 +37,7 @@ fun MainMenuScreen(
     onNavigateToArmory: () -> Unit,
     onNavigateToArcade: () -> Unit,
     onNavigateToVideoPlayer: () -> Unit,
+    onNavigateToStore: () -> Unit,
     onNavigateToCodex: () -> Unit,
     onLaunchMission: (Int) -> Unit
 ) {
@@ -338,6 +339,24 @@ fun MainMenuScreen(
                             .weight(1f)
                             .testTag("nav_video_player_button"),
                         onClick = onNavigateToVideoPlayer
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(12.dp))
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(12.dp)
+                ) {
+                    HubButton(
+                        title = "Black Market Store",
+                        subtitle = "Buy Credits & Weapons",
+                        icon = Icons.Default.ShoppingCart,
+                        color = CyberYellow,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .testTag("nav_store_button"),
+                        onClick = onNavigateToStore
                     )
                 }
             }

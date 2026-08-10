@@ -199,6 +199,20 @@ class GameRepository(private val db: AppDatabase) {
         }
     }
 
+    suspend fun purchaseCreditBundle(creditsAmount: Int, dataAmount: Int) {
+        db.playerDao().addRewards(creditsAmount, dataAmount)
+    }
+
+    suspend fun purchaseDirectGear(gear: GearEntity) {
+        db.gearDao().insertSingleGear(gear)
+    }
+
+    suspend fun purchaseVipPass(newBadgeRank: String, bonusCredits: Int, bonusData: Int) {
+        db.playerDao().addRewards(bonusCredits, bonusData)
+        val profile = playerProfile.firstOrNull() ?: return
+        db.playerDao().insertOrUpdateProfile(profile.copy(badgeRank = newBadgeRank))
+    }
+
     suspend fun processVictoryRewards(mission: CampaignMission, expGain: Int = 60) {
         db.playerDao().addRewards(mission.rewardCredits, mission.rewardData)
         db.playerDao().incrementVictories()
