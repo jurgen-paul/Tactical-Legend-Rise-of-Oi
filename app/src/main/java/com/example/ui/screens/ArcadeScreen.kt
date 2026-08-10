@@ -30,6 +30,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.data.db.PlayerProfileEntity
 import com.example.ui.theme.*
+import com.example.util.SoundManager
 import kotlinx.coroutines.delay
 import kotlin.random.Random
 
@@ -380,6 +381,7 @@ fun ArcadeScreen(
                                             activeNodes = activeNodes.filter { it.id != node.id }
                                             when (node.type) {
                                                 NodeType.ROGUE_DRONE -> {
+                                                    SoundManager.playAttackSound()
                                                     combo++
                                                     if (combo > maxCombo) maxCombo = combo
                                                     val pts = (100 * (1 + combo * 0.2f)).toInt()
@@ -388,6 +390,7 @@ fun ArcadeScreen(
                                                 }
 
                                                 NodeType.EMP_POWERUP -> {
+                                                    SoundManager.playAbilitySound()
                                                     // Clear all rogue nodes
                                                     val cleared =
                                                         activeNodes.count { it.type == NodeType.ROGUE_DRONE }
@@ -399,12 +402,14 @@ fun ArcadeScreen(
                                                 }
 
                                                 NodeType.SHIELD_BOOST -> {
+                                                    SoundManager.playShieldHealSound()
                                                     firewallHp =
                                                         (firewallHp + 20f).coerceAtMost(100f)
                                                     currentScore += 50
                                                 }
 
                                                 NodeType.OVERDRIVE_CORE -> {
+                                                    SoundManager.playVictorySound()
                                                     currentScore += 500
                                                     combo += 3
                                                 }

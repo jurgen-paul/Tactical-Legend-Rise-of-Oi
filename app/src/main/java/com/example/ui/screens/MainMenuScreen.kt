@@ -36,6 +36,7 @@ fun MainMenuScreen(
     onNavigateToSquad: () -> Unit,
     onNavigateToArmory: () -> Unit,
     onNavigateToArcade: () -> Unit,
+    onNavigateToVideoPlayer: () -> Unit,
     onNavigateToCodex: () -> Unit,
     onLaunchMission: (Int) -> Unit
 ) {
@@ -323,9 +324,20 @@ fun MainMenuScreen(
                         icon = Icons.Default.MenuBook,
                         color = CyberPurple,
                         modifier = Modifier
-                            .fillMaxWidth()
+                            .weight(1f)
                             .testTag("nav_codex_button"),
                         onClick = onNavigateToCodex
+                    )
+
+                    HubButton(
+                        title = "Cyber Cinema",
+                        subtitle = "Trailers & Stream",
+                        icon = Icons.Default.OndemandVideo,
+                        color = CyberPrimary,
+                        modifier = Modifier
+                            .weight(1f)
+                            .testTag("nav_video_player_button"),
+                        onClick = onNavigateToVideoPlayer
                     )
                 }
             }

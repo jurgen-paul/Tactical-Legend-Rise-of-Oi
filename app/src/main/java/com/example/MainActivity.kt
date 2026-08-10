@@ -56,6 +56,7 @@ fun MainAppContent(
         Screen.Squad,
         Screen.Armory,
         Screen.Arcade,
+        Screen.VideoPlayer,
         Screen.Codex
     )
 
@@ -126,6 +127,7 @@ fun MainAppContent(
                     onNavigateToSquad = { navController.navigate(Screen.Squad.route) },
                     onNavigateToArmory = { navController.navigate(Screen.Armory.route) },
                     onNavigateToArcade = { navController.navigate(Screen.Arcade.route) },
+                    onNavigateToVideoPlayer = { navController.navigate(Screen.VideoPlayer.route) },
                     onNavigateToCodex = { navController.navigate(Screen.Codex.route) },
                     onLaunchMission = { missionId ->
                         battleViewModel.startMission(missionId, heroes, gearList)
@@ -179,6 +181,14 @@ fun MainAppContent(
                     profile = profile,
                     onClaimRewards = { credits, data ->
                         mainViewModel.claimArcadeRewards(credits, data)
+                    }
+                )
+            }
+
+            composable(Screen.VideoPlayer.route) {
+                VideoPlayerScreen(
+                    onClaimCredits = { amount ->
+                        mainViewModel.claimArcadeRewards(amount, 0)
                     }
                 )
             }

@@ -8,6 +8,7 @@ import com.example.data.db.GearEntity
 import com.example.data.db.HeroEntity
 import com.example.data.model.*
 import com.example.data.repository.GameRepository
+import com.example.game.BattlePhase
 import com.example.game.BattleUnit
 import com.example.game.TacticalBattleEngine
 import com.example.game.TacticalBattleState
@@ -15,6 +16,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+
+import com.example.util.SoundManager
 
 class BattleViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -91,11 +94,13 @@ class BattleViewModel(application: Application) : AndroidViewModel(application) 
     }
 
     fun selectUnit(unitId: String?) {
+        if (unitId != null) SoundManager.playClickSound()
         engine?.selectUnit(unitId)
         _battleState.value = engine?.state
     }
 
     fun selectAbility(ability: TacticalAbility?) {
+        if (ability != null) SoundManager.playClickSound()
         engine?.selectAbility(ability)
         _battleState.value = engine?.state
     }
@@ -105,24 +110,45 @@ class BattleViewModel(application: Application) : AndroidViewModel(application) 
     }
 
     fun moveUnit(unitId: String, targetPos: Position) {
+        SoundManager.playMoveSound()
         engine?.moveUnit(unitId, targetPos)
         _battleState.value = engine?.state
+        checkBattleEndState()
     }
 
     fun performAttack(attackerId: String, targetId: String) {
+        SoundManager.playAttackSound()
         engine?.performBasicAttack(attackerId, targetId)
         _battleState.value = engine?.state
+        checkBattleEndState()
     }
 
     fun executeAbility(attackerId: String, ability: TacticalAbility, targetPos: Position) {
+        when (ability.type) {
+            AbilityType.HEAL, AbilityType.SHIELD -> SoundManager.playShieldHealSound()
+            AbilityType.ATTACK, AbilityType.AOE_ATTACK -> SoundManager.playAttackSound()
+            else -> SoundManager.playAbilitySound()
+        }
         engine?.executeAbility(attackerId, ability, targetPos)
         _battleState.value = engine?.state
+        checkBattleEndState()
     }
 
     fun endTurn() {
+        SoundManager.playClickSound()
         viewModelScope.launch {
             engine?.endPlayerTurn()
             _battleState.value = engine?.state
+            checkBattleEndState()
+        }
+    }
+
+    private fun checkBattleEndState() {
+        val currentState = engine?.state ?: return
+        if (currentState.phase == BattlePhase.VICTORY) {
+            SoundManager.playVictorySound()
+        } else if (currentState.phase == BattlePhase.DEFEAT) {
+            SoundManager.playDefeatSound()
         }
     }
 

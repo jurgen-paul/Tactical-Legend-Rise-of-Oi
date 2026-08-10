@@ -17,6 +17,13 @@ An immersive, turn-based tactical squad RPG set in a dystopian cyberpunk univers
   - **Samurai**: High-mobility melee assassin equipped with thermal blades.
 - **Tactical Abilities**: Execute targeted class skills, AoE abilities, and field buffs.
 - **Boss Battles**: Engage heavily armored enemy commanders with unique attack patterns and higher health pools.
+- **Synthesized Audio Engine**: Zero-dependency `SoundManager` generating high-tech audio feedback for movement, laser attacks, shield boosts, and victory fanfares.
+
+### 🎬 Cyber Media Cinema & Video Player Module
+- **Native Video Stream Engine**: Interactive video player powered by native `VideoView` / AndroidView controls with fallback cyber-matrix rendering.
+- **HUD Player Controls**: Play/Pause, ±10s seeking, scrubbable progress bar, volume mute toggle, and fullscreen mode.
+- **Cyberpunk Stream Playlist**: Access trailers, boss raid cutscenes, nanite forging tutorials, and hack simulator guides.
+- **Watch & Earn Rewards**: Claim +50 Cyber Credits per trailer watched to fund squad weapons and armor synthesis.
 
 ### 👾 Cyber Arcade Hack Simulator
 - **Interactive Hack Strike Game**: Fast-paced matrix mini-game where players neutralize incoming Rogue Drones before they breach the Firewall line.
