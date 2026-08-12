@@ -12,8 +12,9 @@ Welcome to the definitive guide for **Tactical Legend: Rise of Oi**, a feature-r
 5. [Cyber Arcade Hack Simulator](#-cyber-arcade-hack-simulator)
 6. [Nanite Forge & Armory Loadouts](#-nanite-forge--armory-loadouts)
 7. [Black Market Cyber Store & Payments](#-black-market-cyber-store--payments)
-8. [Synthesized Audio Engine](#-synthesized-audio-engine)
-9. [Database Architecture & Local Persistence](#-database-architecture--local-persistence)
+8. [Dystopian Material3 Design System](#-dystopian-material3-design-system)
+9. [Synthesized Audio Engine](#-synthesized-audio-engine)
+10. [Database Architecture & Local Persistence](#-database-architecture--local-persistence)
 
 ---
 
@@ -122,6 +123,23 @@ The **Black Market Store** provides direct in-app purchases for game items, curr
 ### Payment Gateway
 - Supports simulated **Google Play In-App Billing**, **Cyber-Crypto Wallet**, and **Oi Sovereign Black Card**.
 - Direct state modification in Room database upon order authorization.
+
+---
+
+## 🎨 Dystopian Material3 Design System
+
+The app utilizes a custom **Material 3 Dystopian Theme** featuring an obsidian canvas and neon high-contrast visual tokens:
+
+- **Color Tokens**:
+  - 🌌 **Obsidian Canvas** (`CyberBackground` = `#0A0D14`): Dark deep space backdrop.
+  - ⚡ **Electric Cyan** (`CyberPrimary` = `#00E5FF`): Primary interactive action color.
+  - 🔴 **Neon Crimson** (`CyberSecondary` = `#FF2A6D`): Secondary tactical pulse & alert accent.
+  - 🟡 **Amber Gold** (`CyberTertiary` / `CyberYellow` = `#FFB703`): High-voltage rank & currency token.
+  - 🟩 **Matrix Emerald** (`CyberGreen` = `#05FF69`): Success, heals, and purchase authorizations.
+  - 🟣 **Quantum Violet** (`CyberPurple` = `#A855F7`): Intelligence, ciphers, and epic item tiers.
+- **Material 3 Typography System**:
+  - **Monospace HUD Font Family**: Powers all terminal telemetry labels, damage figures, and header badges with custom letter-spacing.
+  - **Clean Sans Font Family**: Ensures crisp legibility for story logs, weapon stats, and dialog descriptions.
 
 ---
 

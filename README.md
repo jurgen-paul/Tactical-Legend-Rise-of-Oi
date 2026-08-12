@@ -18,6 +18,7 @@ An immersive, turn-based tactical squad RPG set in a dystopian cyberpunk univers
 - **Tactical Abilities**: Execute targeted class skills, AoE abilities, and field buffs.
 - **Boss Battles**: Engage heavily armored enemy commanders with unique attack patterns and higher health pools.
 - **Synthesized Audio Engine**: Zero-dependency `SoundManager` generating high-tech audio feedback for movement, laser attacks, shield boosts, and victory fanfares.
+- **Dystopian Material3 Design System**: High-contrast obsidian canvas (`#0A0D14`), neon cyan primary (`#00E5FF`), crimson secondary pulse (`#FF2A6D`), matrix emerald (`#05FF69`), and monospace HUD typography.
 
 ### 🛒 Black Market Cyber Store & Payments Module
 - **In-App Purchase Store**: Cyberpunk Black Market store featuring Credit Vault Bundles, Exclusive Legendary Weapons, and VIP Cyber Passes.
