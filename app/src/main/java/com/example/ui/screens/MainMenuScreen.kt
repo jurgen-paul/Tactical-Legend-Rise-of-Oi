@@ -85,21 +85,21 @@ fun MainMenuScreen(
                         .padding(20.dp)
                 ) {
                     Surface(
-                        color = CyberSecondary,
+                        color = CyberPrimary,
                         shape = RoundedCornerShape(4.dp),
                         modifier = Modifier.padding(bottom = 6.dp)
                     ) {
                         Text(
-                            text = "DISTRICT OI TACTICAL COMMAND",
-                            color = Color.White,
+                            text = "DIRECT NEURAL INTERFACE (DNI) ONLINE",
+                            color = Color.Black,
                             fontSize = 10.sp,
-                            fontWeight = FontWeight.Bold,
+                            fontWeight = FontWeight.Black,
                             modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp)
                         )
                     }
 
                     Text(
-                        text = "TACTICAL LEGEND",
+                        text = "OISTARS OPS 1",
                         color = CyberPrimary,
                         fontSize = 28.sp,
                         fontWeight = FontWeight.Black,
@@ -107,7 +107,7 @@ fun MainMenuScreen(
                     )
 
                     Text(
-                        text = "THE RISE OF THE OI",
+                        text = "CYBER WARFARE SPECIALISTS",
                         color = CyberOnSurface,
                         fontSize = 18.sp,
                         fontWeight = FontWeight.Bold,
@@ -277,8 +277,8 @@ fun MainMenuScreen(
                     )
 
                     HubButton(
-                        title = "Oi Squad Roster",
-                        subtitle = "5 Heroes",
+                        title = "DNI Specialists",
+                        subtitle = "5 Operatives",
                         icon = Icons.Default.Groups,
                         color = CyberSecondary,
                         modifier = Modifier
@@ -293,8 +293,8 @@ fun MainMenuScreen(
                     horizontalArrangement = Arrangement.spacedBy(12.dp)
                 ) {
                     HubButton(
-                        title = "Cyber Armory",
-                        subtitle = "Craft & Equip",
+                        title = "Cyber Core & Armory",
+                        subtitle = "DNI Rigs & Weapons",
                         icon = Icons.Default.Shield,
                         color = CyberTertiary,
                         modifier = Modifier
@@ -304,8 +304,8 @@ fun MainMenuScreen(
                     )
 
                     HubButton(
-                        title = "Cyber Arcade",
-                        subtitle = "Hack Simulator",
+                        title = "GobbleGum Arcade",
+                        subtitle = "Zombies Hack Sim",
                         icon = Icons.Default.SportsEsports,
                         color = CyberGreen,
                         modifier = Modifier
@@ -321,7 +321,7 @@ fun MainMenuScreen(
                 ) {
                     HubButton(
                         title = "Tactical Codex",
-                        subtitle = "Lore & Intel",
+                        subtitle = "DNI & Corp Intel",
                         icon = Icons.Default.MenuBook,
                         color = CyberPurple,
                         modifier = Modifier
@@ -332,7 +332,7 @@ fun MainMenuScreen(
 
                     HubButton(
                         title = "Cyber Cinema",
-                        subtitle = "Trailers & Stream",
+                        subtitle = "Oistars Campaign Cinema",
                         icon = Icons.Default.OndemandVideo,
                         color = CyberPrimary,
                         modifier = Modifier
@@ -349,8 +349,8 @@ fun MainMenuScreen(
                     horizontalArrangement = Arrangement.spacedBy(12.dp)
                 ) {
                     HubButton(
-                        title = "Black Market Store",
-                        subtitle = "Buy Credits & Weapons",
+                        title = "Black Market Supply Drops",
+                        subtitle = "Blackjack Cryptokeys & Bribes",
                         icon = Icons.Default.ShoppingCart,
                         color = CyberYellow,
                         modifier = Modifier

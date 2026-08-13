@@ -62,7 +62,7 @@ class TacticalBattleEngine(
     private val units: MutableList<BattleUnit> = mutableListOf()
     private val logs: MutableList<BattleLog> = mutableListOf()
 
-    var state: TacticalBattleState
+    lateinit var state: TacticalBattleState
 
     init {
         // Build Terrain Map
@@ -121,8 +121,6 @@ class TacticalBattleEngine(
             )
         }
 
-        addLog("Battle Commenced: ${mission.title}! Deployment complete.", LogType.SYSTEM)
-
         state = TacticalBattleState(
             mission = mission,
             width = width,
@@ -134,10 +132,13 @@ class TacticalBattleEngine(
             selectedUnitId = units.firstOrNull { it.team == UnitTeam.PLAYER_OI }?.id,
             logs = logs.toList()
         )
+
+        addLog("Battle Commenced: ${mission.title}! Deployment complete.", LogType.SYSTEM)
     }
 
     private fun addLog(message: String, type: LogType = LogType.INFO) {
-        logs.add(0, BattleLog(turn = state.currentTurn, message = message, logType = type))
+        val currentTurn = if (::state.isInitialized) state.currentTurn else 1
+        logs.add(0, BattleLog(turn = currentTurn, message = message, logType = type))
     }
 
     fun selectUnit(unitId: String?) {
@@ -167,6 +168,11 @@ class TacticalBattleEngine(
             }
         }
         return valid
+    }
+
+    fun getMoveApCost(from: Position, to: Position): Int {
+        val dist = from.distanceTo(to)
+        return max(1, (dist + 1) / 2)
     }
 
     fun moveUnit(unitId: String, targetPos: Position) {

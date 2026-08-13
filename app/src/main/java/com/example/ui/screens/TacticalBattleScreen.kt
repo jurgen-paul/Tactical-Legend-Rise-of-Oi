@@ -96,7 +96,7 @@ fun TacticalBattleScreen(
                     modifier = Modifier
                         .fillMaxWidth()
                         .background(CyberSurfaceVariant)
-                        .padding(horizontal = 16.dp, vertical = 8.dp),
+                        .padding(horizontal = 16.dp, vertical = 6.dp),
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
@@ -107,7 +107,7 @@ fun TacticalBattleScreen(
                         text = "OI SQUAD: $playerAliveCount ACTIVE",
                         color = CyberPrimary,
                         fontWeight = FontWeight.Bold,
-                        fontSize = 12.sp
+                        fontSize = 11.sp
                     )
 
                     Surface(
@@ -118,9 +118,9 @@ fun TacticalBattleScreen(
                         Text(
                             text = "CP TERMINAL: ${state.controlPointTurnsHeld}/2 TURNS",
                             color = CyberTertiary,
-                            fontSize = 11.sp,
+                            fontSize = 10.sp,
                             fontWeight = FontWeight.Bold,
-                            modifier = Modifier.padding(horizontal = 10.dp, vertical = 4.dp)
+                            modifier = Modifier.padding(horizontal = 8.dp, vertical = 2.dp)
                         )
                     }
 
@@ -128,9 +128,15 @@ fun TacticalBattleScreen(
                         text = "HOSTILES: $enemyAliveCount ALIVE",
                         color = CyberSecondary,
                         fontWeight = FontWeight.Bold,
-                        fontSize = 12.sp
+                        fontSize = 11.sp
                     )
                 }
+
+                // TURN INDICATOR BANNER (The Oi Squad vs Enemy AI)
+                TurnIndicatorHeader(
+                    phase = state.phase,
+                    currentTurn = state.currentTurn
+                )
 
                 // Center 2D Grid Battlefield
                 Box(
@@ -262,19 +268,59 @@ fun TacticalGridBoard(
             .fillMaxWidth()
             .wrapContentHeight(),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.spacedBy(4.dp)
+        verticalArrangement = Arrangement.spacedBy(2.dp)
     ) {
+        // Top X-Axis Coordinates Header
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(4.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.padding(bottom = 2.dp)
+        ) {
+            // Corner spacer for Y-axis column
+            Box(modifier = Modifier.size(20.dp))
+
+            for (x in 0 until width) {
+                Box(
+                    modifier = Modifier.size(width = 46.dp, height = 18.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "X$x",
+                        color = CyberPrimary.copy(alpha = 0.8f),
+                        fontSize = 10.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+            }
+        }
+
         for (y in 0 until height) {
             Row(
                 horizontalArrangement = Arrangement.spacedBy(4.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
+                // Left Y-Axis Coordinate Label
+                Box(
+                    modifier = Modifier.size(width = 20.dp, height = 46.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = "Y$y",
+                        color = CyberSecondary.copy(alpha = 0.8f),
+                        fontSize = 10.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+
                 for (x in 0 until width) {
                     val pos = Position(x, y)
                     val terrain = state.terrainMap[pos] ?: TerrainType.PLAIN
                     val unitOnTile = state.units.find { it.isAlive && it.position == pos }
                     val isValidMove = pos in validMoves
                     val isSelectedUnitTile = selectedUnit?.position == pos
+                    val apCost = if (isValidMove && selectedUnit != null) {
+                        viewModel.getMoveApCost(selectedUnit.position, pos)
+                    } else null
 
                     GridTileView(
                         pos = pos,
@@ -282,6 +328,7 @@ fun TacticalGridBoard(
                         unit = unitOnTile,
                         isSelected = isSelectedUnitTile,
                         isValidMove = isValidMove,
+                        moveApCost = apCost,
                         onClick = {
                             if (unitOnTile != null) {
                                 if (selectedUnit != null && selectedUnit.team == UnitTeam.PLAYER_OI && unitOnTile.team != UnitTeam.PLAYER_OI) {
@@ -312,6 +359,7 @@ fun GridTileView(
     unit: BattleUnit?,
     isSelected: Boolean,
     isValidMove: Boolean,
+    moveApCost: Int?,
     onClick: () -> Unit
 ) {
     val tileBg = when {
@@ -338,26 +386,56 @@ fun GridTileView(
             .size(46.dp)
             .clip(RoundedCornerShape(6.dp))
             .background(tileBg)
-            .border(1.dp, tileBorder, RoundedCornerShape(6.dp))
+            .border(if (isSelected || isValidMove) 1.5.dp else 1.dp, tileBorder, RoundedCornerShape(6.dp))
             .clickable { onClick() }
             .testTag("tile_${pos.x}_${pos.y}"),
         contentAlignment = Alignment.Center
     ) {
+        // Small 2D Coordinate Badge in top-left
+        Text(
+            text = "${pos.x},${pos.y}",
+            color = CyberSubtext.copy(alpha = 0.4f),
+            fontSize = 7.sp,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier
+                .align(Alignment.TopStart)
+                .padding(2.dp)
+        )
+
         // Terrain background indicator
         if (terrain == TerrainType.CONTROL_POINT) {
             Icon(
                 imageVector = Icons.Default.Terminal,
                 contentDescription = "Terminal",
                 tint = CyberTertiary.copy(alpha = 0.5f),
-                modifier = Modifier.size(24.dp)
+                modifier = Modifier.size(22.dp)
             )
         } else if (terrain == TerrainType.COVER) {
             Icon(
                 imageVector = Icons.Default.Shield,
                 contentDescription = "Cover",
                 tint = Color.Gray.copy(alpha = 0.3f),
-                modifier = Modifier.size(20.dp)
+                modifier = Modifier.size(18.dp)
             )
+        }
+
+        // Movement AP Cost Badge on Valid Targets
+        if (isValidMove && moveApCost != null && unit == null) {
+            Surface(
+                color = CyberGreen,
+                shape = RoundedCornerShape(4.dp),
+                modifier = Modifier
+                    .align(Alignment.Center)
+                    .padding(2.dp)
+            ) {
+                Text(
+                    text = "-${moveApCost}AP",
+                    color = Color.Black,
+                    fontSize = 9.sp,
+                    fontWeight = FontWeight.Black,
+                    modifier = Modifier.padding(horizontal = 3.dp, vertical = 1.dp)
+                )
+            }
         }
 
         // Unit Token Rendering
@@ -431,7 +509,11 @@ fun ActiveUnitActionBar(
             ) {
                 Column {
                     Text(text = unit.name, color = CyberOnSurface, fontWeight = FontWeight.Bold, fontSize = 15.sp)
-                    Text(text = "${unit.heroClass?.role ?: "Tactical Unit"} • ATK ${unit.attack} | DEF ${unit.defense}", color = CyberSubtext, fontSize = 11.sp)
+                    Text(
+                        text = "${unit.heroClass?.role ?: "Tactical Unit"} • POS (${unit.position.x}, ${unit.position.y}) • MOB ${unit.mobility}",
+                        color = CyberSubtext,
+                        fontSize = 11.sp
+                    )
                 }
 
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -596,6 +678,110 @@ fun BattleOutcomeModal(
                         text = if (isVictory) "CLAIM REWARDS & RETURN" else "RETURN TO WAR ROOM",
                         color = Color.White,
                         fontWeight = FontWeight.Bold
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun TurnIndicatorHeader(
+    phase: BattlePhase,
+    currentTurn: Int
+) {
+    val isPlayerTurn = phase == BattlePhase.PLAYER_TURN
+    val bannerBg = if (isPlayerTurn) CyberPrimary.copy(alpha = 0.15f) else CyberSecondary.copy(alpha = 0.20f)
+    val borderColor = if (isPlayerTurn) CyberPrimary else CyberSecondary
+    val mainColor = if (isPlayerTurn) CyberPrimary else CyberSecondary
+    val icon = if (isPlayerTurn) Icons.Default.Shield else Icons.Default.Warning
+    val titleText = if (isPlayerTurn) "THE OI SQUAD TURN" else "ENEMY AI TURN"
+    val subtitleText = if (isPlayerTurn) "COMMAND ACTIVE OPERATIVES" else "HOSTILE ENFORCE EXECUTION"
+
+    Surface(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 8.dp, vertical = 4.dp)
+            .testTag("turn_indicator_header"),
+        color = bannerBg,
+        border = BorderStroke(1.5.dp, borderColor),
+        shape = RoundedCornerShape(8.dp)
+    ) {
+        AnimatedContent(
+            targetState = isPlayerTurn,
+            transitionSpec = {
+                fadeIn() + slideInVertically { height -> -height } togetherWith fadeOut() + slideOutVertically { height -> height }
+            },
+            label = "TurnTransition"
+        ) { targetIsPlayer ->
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 12.dp, vertical = 6.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    Surface(
+                        color = mainColor,
+                        shape = CircleShape,
+                        modifier = Modifier.size(28.dp)
+                    ) {
+                        Box(contentAlignment = Alignment.Center) {
+                            Icon(
+                                imageVector = icon,
+                                contentDescription = "Turn Icon",
+                                tint = Color.Black,
+                                modifier = Modifier.size(18.dp)
+                            )
+                        }
+                    }
+
+                    Column {
+                        Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                            Text(
+                                text = titleText,
+                                color = mainColor,
+                                fontWeight = FontWeight.Black,
+                                fontSize = 14.sp,
+                                letterSpacing = 0.5.sp
+                            )
+                            Surface(
+                                color = mainColor.copy(alpha = 0.2f),
+                                shape = RoundedCornerShape(4.dp)
+                            ) {
+                                Text(
+                                    text = if (targetIsPlayer) "ACTIVE" else "EXECUTING...",
+                                    color = mainColor,
+                                    fontSize = 9.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    modifier = Modifier.padding(horizontal = 4.dp, vertical = 1.dp)
+                                )
+                            }
+                        }
+                        Text(
+                            text = subtitleText,
+                            color = CyberOnSurface.copy(alpha = 0.8f),
+                            fontSize = 10.sp,
+                            fontWeight = FontWeight.Medium
+                        )
+                    }
+                }
+
+                Surface(
+                    color = CyberSurface,
+                    border = BorderStroke(1.dp, mainColor.copy(alpha = 0.5f)),
+                    shape = RoundedCornerShape(6.dp)
+                ) {
+                    Text(
+                        text = "TURN $currentTurn",
+                        color = mainColor,
+                        fontSize = 11.sp,
+                        fontWeight = FontWeight.Black,
+                        modifier = Modifier.padding(horizontal = 8.dp, vertical = 3.dp)
                     )
                 }
             }

@@ -201,14 +201,14 @@ fun ArcadeScreen(
                         Spacer(modifier = Modifier.width(10.dp))
                         Column {
                             Text(
-                                text = "CYBER ARCADE SIMULATOR",
+                                text = "GOBBLEGUM & DNI HACK SIMULATOR",
                                 color = CyberPrimary,
-                                fontSize = 16.sp,
+                                fontSize = 15.sp,
                                 fontWeight = FontWeight.Black,
                                 letterSpacing = 0.5.sp
                             )
                             Text(
-                                text = "HACK STRIKE • HIGH SCORE REWARDS",
+                                text = "CYBER STRIKE • HIGH SCORE CRYPTOKEYS",
                                 color = CyberSubtext,
                                 fontSize = 10.sp,
                                 fontWeight = FontWeight.Bold

@@ -104,11 +104,11 @@ fun StoreScreen(
 
     val catalogItems = remember {
         listOf(
-            // Credit Bundles
+            // Cryptokey & Credit Bundles
             StoreItem.CreditBundle(
                 id = "pack_starter",
-                title = "Cyber Credit Stash",
-                description = "+1,200 Cyber Credits & +300 Tactical Data",
+                title = "Cryptokey Starter Pack",
+                description = "+1,200 Cryptokeys & +300 DNI Data",
                 price = "$0.99",
                 creditsAmount = 1200,
                 dataAmount = 300,
@@ -117,8 +117,8 @@ fun StoreScreen(
             ),
             StoreItem.CreditBundle(
                 id = "pack_veteran",
-                title = "Black Market Matrix Vault",
-                description = "+4,500 Cyber Credits & +1,200 Tactical Data",
+                title = "Blackjack Supply Drop Cache",
+                description = "+4,500 Cryptokeys & +1,200 DNI Data",
                 price = "$2.99",
                 creditsAmount = 4500,
                 dataAmount = 1200,
@@ -127,8 +127,8 @@ fun StoreScreen(
             ),
             StoreItem.CreditBundle(
                 id = "pack_sovereign",
-                title = "Cyber Overlord Mega Vault",
-                description = "+15,000 Cyber Credits & +4,500 Tactical Data",
+                title = "Black Market Mega Vault",
+                description = "+15,000 Cryptokeys & +4,500 DNI Data",
                 price = "$9.99",
                 creditsAmount = 15000,
                 dataAmount = 4500,
@@ -139,12 +139,12 @@ fun StoreScreen(
             // Exclusive Weapons & Gear
             StoreItem.DirectWeapon(
                 id = "weapon_scythe",
-                title = "Plasma Singularity Scythe",
-                description = "Legendary Vanguard Weapon. +65 ATK, +25% Crit Damage",
+                title = "Mastercraft Scythe Minigun",
+                description = "Legendary Reaper Weapon. +65 ATK, +25% Crit Damage",
                 price = "$2.99",
                 gearItem = GearEntity(
                     id = "weapon_scythe_${System.currentTimeMillis()}",
-                    name = "Plasma Singularity Scythe",
+                    name = "Mastercraft Scythe Minigun",
                     type = GearType.WEAPON,
                     rarity = Rarity.LEGENDARY,
                     attackBonus = 65,
@@ -156,12 +156,12 @@ fun StoreScreen(
             ),
             StoreItem.DirectWeapon(
                 id = "weapon_exosuit",
-                title = "Aegis Dreadnought Armor",
-                description = "Legendary Kinetic Exosuit. +60 DEF, +220 HP",
+                title = "DNI Kinetic Overdrive Armor",
+                description = "Legendary Battery Armor. +60 DEF, +220 HP",
                 price = "$3.99",
                 gearItem = GearEntity(
                     id = "armor_dreadnought_${System.currentTimeMillis()}",
-                    name = "Aegis Dreadnought Armor",
+                    name = "DNI Kinetic Overdrive Armor",
                     type = GearType.ARMOR,
                     rarity = Rarity.LEGENDARY,
                     defenseBonus = 60,
@@ -173,12 +173,12 @@ fun StoreScreen(
             ),
             StoreItem.DirectWeapon(
                 id = "weapon_chip",
-                title = "Quantum Cipher Core v5",
-                description = "Epic Cipher Chip. +40 ATK, +120 HP, +15% Crit",
+                title = "Glitch DNI Core v5",
+                description = "Epic Prophet Cyber Chip. +40 ATK, +120 HP, +15% Crit",
                 price = "$1.99",
                 gearItem = GearEntity(
                     id = "chip_quantum_${System.currentTimeMillis()}",
-                    name = "Quantum Cipher Core v5",
+                    name = "Glitch DNI Core v5",
                     type = GearType.CIPHER_CHIP,
                     rarity = Rarity.EPIC,
                     attackBonus = 40,
@@ -193,10 +193,10 @@ fun StoreScreen(
             // Passes & Upgrades
             StoreItem.VipPass(
                 id = "pass_sovereign",
-                title = "Sovereign VIP Cyber Pass",
-                description = "Unlocks 'Sovereign Cyber Overlord' Title, +6,000 Credits, +2,500 Data & Permanent +50% XP Boost",
+                title = "Blackjack Master Prestige Pass",
+                description = "Unlocks 'Oistars Ops Master Prestige' Title, +6,000 Cryptokeys, +2,500 DNI Data & Permanent XP Boost",
                 price = "$4.99",
-                newBadgeRank = "Sovereign Cyber Overlord",
+                newBadgeRank = "Oistars Ops Master Prestige",
                 bonusCredits = 6000,
                 bonusData = 2500,
                 icon = Icons.Default.WorkspacePremium,
@@ -244,13 +244,13 @@ fun StoreScreen(
                             Spacer(modifier = Modifier.width(10.dp))
                             Column {
                                 Text(
-                                    text = "BLACK MARKET CYBER STORE",
+                                    text = "BLACK MARKET & CRYPTOKEYS",
                                     color = CyberPrimary,
                                     fontSize = 16.sp,
                                     fontWeight = FontWeight.Black
                                 )
                                 Text(
-                                    text = "IN-APP WEAPONS & CREDIT VAULTS",
+                                    text = "BLACKJACK SUPPLY DROPS & MASTERCRAFTS",
                                     color = CyberSubtext,
                                     fontSize = 10.sp,
                                     fontWeight = FontWeight.Bold

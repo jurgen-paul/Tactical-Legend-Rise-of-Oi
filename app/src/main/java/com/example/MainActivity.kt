@@ -72,7 +72,7 @@ fun MainAppContent(
                 NavigationBar(
                     containerColor = CyberSurface,
                     contentColor = CyberPrimary,
-                    modifier = Modifier.windowInsetsPadding(WindowInsets.navigationBars)
+                    windowInsets = NavigationBarDefaults.windowInsets
                 ) {
                     bottomNavScreens.forEach { screen ->
                         val isSelected = currentRoute == screen.route
@@ -149,11 +149,19 @@ fun MainAppContent(
             }
 
             composable(Screen.Squad.route) {
-                SquadWarRoomScreen(
+                SquadManagerScreen(
                     heroes = heroes,
                     gearList = gearList,
+                    unlockedMissionId = profile?.unlockedMissionId ?: 1,
                     onToggleSquad = { heroId, inSquad ->
                         mainViewModel.toggleSquadStatus(heroId, inSquad)
+                    },
+                    onLaunchMission = { missionId ->
+                        battleViewModel.startMission(missionId, heroes, gearList)
+                        navController.navigate(Screen.Battle.createRoute(missionId))
+                    },
+                    onNavigateToArmory = {
+                        navController.navigate(Screen.Armory.route)
                     }
                 )
             }

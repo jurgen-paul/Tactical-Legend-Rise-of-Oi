@@ -1,4 +1,4 @@
-# Tactical Legend: Rise of Oi
+# Oistars Ops 1
 
 An immersive, turn-based tactical squad RPG set in a dystopian cyberpunk universe. Command "The Oi" elite operative squad, navigate grid-based combat missions, forge high-tech cybernetic gear, play arcade mini-games, and reclaim the metropolis from enemy factions.
 
@@ -19,6 +19,13 @@ An immersive, turn-based tactical squad RPG set in a dystopian cyberpunk univers
 - **Boss Battles**: Engage heavily armored enemy commanders with unique attack patterns and higher health pools.
 - **Synthesized Audio Engine**: Zero-dependency `SoundManager` generating high-tech audio feedback for movement, laser attacks, shield boosts, and victory fanfares.
 - **Dystopian Material3 Design System**: High-contrast obsidian canvas (`#0A0D14`), neon cyan primary (`#00E5FF`), crimson secondary pulse (`#FF2A6D`), matrix emerald (`#05FF69`), and monospace HUD typography.
+
+### 👥 Oi Squad Manager & Deployment Matrix
+- **Operative Deployment Matrix**: Interactively toggle units between active deployment and reserve status for upcoming missions.
+- **Squad Power Telemetry**: Real-time total squad combat power index calculation based on operative levels, base attributes, and equipped gear bonuses.
+- **Mission Pre-Deployment Launcher**: Select unlocked campaign missions directly from the Squad Manager and compare squad power against recommended mission requirements.
+- **Operative Spec Sheet Inspection**: Inspect detailed character telemetry, class roles (Vanguard, Sniper, Cipher, Medic, Samurai), lore briefings, and tactical ability profiles.
+- **Roster Filtering**: Filter operatives by deployment state (All, Deployed, Reserves) or class role.
 
 ### 🛒 Black Market Cyber Store & Payments Module
 - **In-App Purchase Store**: Cyberpunk Black Market store featuring Credit Vault Bundles, Exclusive Legendary Weapons, and VIP Cyber Passes.

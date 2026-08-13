@@ -28,14 +28,14 @@ fun CodexScreen() {
             .testTag("codex_screen")
     ) {
         Text(
-            text = "TACTICAL CODEX & INTEL",
+            text = "OISTARS OPS 1 INTEL CODEX",
             color = CyberPrimary,
             fontSize = 22.sp,
             fontWeight = FontWeight.Black,
             letterSpacing = 1.sp
         )
         Text(
-            text = "Archive of 'The Oi' lore, battlefield mechanics, and enemy blueprints.",
+            text = "Archive of DNI Specialist lore, tactical grid mechanics, CDP hostiles, and Corvus AI.",
             color = CyberSubtext,
             fontSize = 12.sp
         )
@@ -48,13 +48,13 @@ fun CodexScreen() {
             contentColor = CyberPrimary
         ) {
             Tab(selected = selectedTab == 0, onClick = { selectedTab = 0 }) {
-                Text("LORE & OI", modifier = Modifier.padding(12.dp), fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                Text("SPECIALISTS & DNI", modifier = Modifier.padding(12.dp), fontSize = 11.sp, fontWeight = FontWeight.Bold)
             }
             Tab(selected = selectedTab == 1, onClick = { selectedTab = 1 }) {
-                Text("TACTICS", modifier = Modifier.padding(12.dp), fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                Text("CYBER TACTICS", modifier = Modifier.padding(12.dp), fontSize = 11.sp, fontWeight = FontWeight.Bold)
             }
             Tab(selected = selectedTab == 2, onClick = { selectedTab = 2 }) {
-                Text("HOSTILES", modifier = Modifier.padding(12.dp), fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                Text("CDP & UNDEAD", modifier = Modifier.padding(12.dp), fontSize = 11.sp, fontWeight = FontWeight.Bold)
             }
         }
 
@@ -65,48 +65,48 @@ fun CodexScreen() {
                 0 -> {
                     item {
                         CodexSectionCard(
-                            title = "THE RISE OF THE OI",
-                            subtitle = "Origins of District Oi",
-                            content = "In the neon-drenched dystopian sprawl of Neo-Aegis, mega-corporations reduced District 7 to an automated police state. Out of the oppressed alleys rose 'The Oi'—a street guild of tactical geniuses, rogue cyber-hackers, and urban enforcers sworn to protect the citizens and destroy corporate corruption."
+                            title = "DIRECT NEURAL INTERFACE (DNI)",
+                            subtitle = "Neural Augmentation Paradigm",
+                            content = "In 2065, elite Black Ops soldiers are equipped with Direct Neural Interface (DNI) implants, connecting their minds directly to military communications, cyber warfare weapons, and tactical telemetry. Specialists can hack drones, overdrive physical capabilities, and bend time on the battlefield."
                         )
                     }
                     item {
                         CodexSectionCard(
-                            title = "THE SOVEREIGN CODE",
-                            subtitle = "Guild Philosophy",
-                            content = "1. Never leave a squad mate behind on the grid.\n2. Control the terminals, control the flow of data.\n3. Turn corporate weapons back on their creators."
+                            title = "SPECIALIST OPERATIVES",
+                            subtitle = "Cyber Core Classes",
+                            content = "• RUIN (Vanguard): Overdrive movement speed and unleash Gravity Spikes shockwaves.\n• OUTRIDER (Sniper): Sparrow Explosive Compound Bow & Vision Pulse scanner.\n• PROPHET (Cipher): Tempest Arc Cannon and Glitch time recall.\n• BATTERY (Medic): Kinetic Armor weave and War Machine grenade launcher.\n• SERAPH (Samurai): High-caliber Annihilator revolver and Combat Focus."
                         )
                     }
                 }
                 1 -> {
                     item {
                         CodexSectionCard(
-                            title = "COVER & TERRAIN ADVANTAGE",
+                            title = "COVER & DNI ELEVATION",
                             subtitle = "Grid Combat Mechanics",
-                            content = "• COVER TILES: Reduces incoming ranged damage by 30%.\n• ELEVATED TILES: Grants +20% attack bonus when firing at lower elevation.\n• HAZARD LEAKS: Deals 15 toxic damage per turn.\n• CONTROL POINTS: Holding Cyber Terminals for 2 turns triggers instant victory."
+                            content = "• COVER TILES: Reduces incoming ranged damage by 30%.\n• ELEVATED PLATFORMS: Grants +20% attack bonus when firing down at enemies.\n• DNI TERMINALS: Secure Cyber Terminals at key coordinates to win operations.\n• GOBBLEGUM BUFFS: Activate GobbleGums in the Arcade for permanent campaign multipliers."
                         )
                     }
                     item {
                         CodexSectionCard(
                             title = "ACTION POINT (AP) ECONOMY",
                             subtitle = "Turn Strategy",
-                            content = "Each hero starts their turn with 4-5 AP. Moving costs 1 AP per tile, Basic Attacks cost 2 AP, and Ultimate Skills cost 2-3 AP. Combine movement and cover placement before unleashing skills."
+                            content = "Each Specialist begins their turn with 4-5 AP. Moving costs 1 AP per grid cell, basic attacks cost 2 AP, and Specialist Cyber Core abilities cost 2-3 AP."
                         )
                     }
                 }
                 2 -> {
                     item {
                         CodexSectionCard(
-                            title = "CORPORATE DRONES & ENFORCERS",
-                            subtitle = "Standard Patrol Units",
-                            content = "Automated security drones with medium mobility and kinetic rifles. Susceptible to Cipher hacker stuns."
+                            title = "COMMON DEFENSE PACT (CDP)",
+                            subtitle = "Corporate Military Hostiles",
+                            content = "• R.A.P.S. DRONES: Rapid Autonomous Personal System rolling explosive units.\n• CERBERUS MECHS: Automated heavy turret walker platforms with high armor.\n• G.I. UNITS: Cybernetic infantry bots programmed for aggressive suppression."
                         )
                     }
                     item {
                         CodexSectionCard(
-                            title = "HEAVY TITAN MECHS & BOSSES",
-                            subtitle = "Classified Threats",
-                            content = "XERXES-9 TITAN is equipped with missile barrage systems and kinetic shield matrices. Focus Vanguard taunts and Sniper armor-piercing rounds to crack its armor."
+                            title = "ELEMENT 115 & CORVUS AI",
+                            subtitle = "Anomalies & Bosses",
+                            content = "• MORG CITY UNDEAD: Reanimated victims corrupted by Element 115 in Shadows of Evil.\n• MARGWA: Multi-headed Eldritch horror requiring targeted strikes on glowing heads.\n• CORVUS AI: Rogue Mindscape super-AI threatening to consume all human neural networks."
                         )
                     }
                 }

@@ -31,39 +31,11 @@ fun SquadWarRoomScreen(
     gearList: List<GearEntity>,
     onToggleSquad: (String, Boolean) -> Unit
 ) {
-    LazyColumn(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(CyberBackground)
-            .padding(16.dp)
-            .testTag("squad_screen"),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
-    ) {
-        item {
-            Column {
-                Text(
-                    text = "OI SQUAD WAR ROOM",
-                    color = CyberPrimary,
-                    fontSize = 22.sp,
-                    fontWeight = FontWeight.Black,
-                    letterSpacing = 1.sp
-                )
-                Text(
-                    text = "Manage 'The Oi' tactical operatives, assign combat gear, and adjust deployment.",
-                    color = CyberSubtext,
-                    fontSize = 12.sp
-                )
-            }
-        }
-
-        items(heroes) { hero ->
-            HeroCard(
-                hero = hero,
-                gearList = gearList,
-                onToggleSquad = { onToggleSquad(hero.id, hero.isInSquad) }
-            )
-        }
-    }
+    SquadManagerScreen(
+        heroes = heroes,
+        gearList = gearList,
+        onToggleSquad = onToggleSquad
+    )
 }
 
 @Composable

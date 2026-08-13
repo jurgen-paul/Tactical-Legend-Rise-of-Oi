@@ -25,11 +25,11 @@ class GameRepository(private val db: AppDatabase) {
                 )
             )
 
-            // Seed 5 Heroes for "The Oi" Squad
+            // Seed 5 Black Ops III Specialist Operatives
             val defaultHeroes = listOf(
                 HeroEntity(
                     id = "hero_vanguard",
-                    name = "Jax 'Vanguard' Oi",
+                    name = "Ruin (Donnie Walsh)",
                     heroClass = HeroClass.VANGUARD,
                     level = 1,
                     isInSquad = true,
@@ -38,7 +38,7 @@ class GameRepository(private val db: AppDatabase) {
                 ),
                 HeroEntity(
                     id = "hero_sniper",
-                    name = "Kira 'Neon' Vex",
+                    name = "Outrider (Alessandra)",
                     heroClass = HeroClass.SNIPER,
                     level = 1,
                     isInSquad = true,
@@ -46,7 +46,7 @@ class GameRepository(private val db: AppDatabase) {
                 ),
                 HeroEntity(
                     id = "hero_cipher",
-                    name = "Zero 'Cipher' Byte",
+                    name = "Prophet (David Wilkes)",
                     heroClass = HeroClass.CIPHER,
                     level = 1,
                     isInSquad = true,
@@ -54,14 +54,14 @@ class GameRepository(private val db: AppDatabase) {
                 ),
                 HeroEntity(
                     id = "hero_medic",
-                    name = "Dr. Maya 'Nanite' Ray",
+                    name = "Battery (Erin Baker)",
                     heroClass = HeroClass.MEDIC,
                     level = 1,
                     isInSquad = false
                 ),
                 HeroEntity(
                     id = "hero_samurai",
-                    name = "Ren 'Blade' Kage",
+                    name = "Seraph (He Zhen-Zhen)",
                     heroClass = HeroClass.SAMURAI,
                     level = 1,
                     isInSquad = false
@@ -73,50 +73,50 @@ class GameRepository(private val db: AppDatabase) {
             val starterGear = listOf(
                 GearEntity(
                     id = "gear_sword_1",
-                    name = "Vanguard Plasma Edge",
+                    name = "Gravity Spikes Shockwave",
                     type = GearType.WEAPON,
                     rarity = Rarity.COMMON,
-                    attackBonus = 12,
+                    attackBonus = 14,
                     isEquipped = true,
                     assignedHeroId = "hero_vanguard"
                 ),
                 GearEntity(
                     id = "gear_vest_1",
-                    name = "Heavy Kinetic Weave",
+                    name = "DNI Kinetic Armor",
                     type = GearType.ARMOR,
                     rarity = Rarity.COMMON,
-                    defenseBonus = 8,
-                    hpBonus = 40,
+                    defenseBonus = 10,
+                    hpBonus = 45,
                     isEquipped = true,
                     assignedHeroId = "hero_vanguard"
                 ),
                 GearEntity(
                     id = "gear_rifle_1",
-                    name = "Precision Beam Rifle",
+                    name = "Sparrow Explosive Bow",
                     type = GearType.WEAPON,
                     rarity = Rarity.RARE,
-                    attackBonus = 22,
-                    critBonus = 10,
+                    attackBonus = 25,
+                    critBonus = 12,
                     isEquipped = true,
                     assignedHeroId = "hero_sniper"
                 ),
                 GearEntity(
                     id = "gear_chip_1",
-                    name = "Overclocked Cipher Chip",
+                    name = "Tempest Arc Charge Core",
                     type = GearType.CIPHER_CHIP,
                     rarity = Rarity.RARE,
-                    attackBonus = 10,
-                    hpBonus = 25,
+                    attackBonus = 12,
+                    hpBonus = 30,
                     isEquipped = true,
                     assignedHeroId = "hero_cipher"
                 ),
                 GearEntity(
                     id = "gear_core_free",
-                    name = "Nanite Regeneration Core",
+                    name = "Glitch DNI Time Recall",
                     type = GearType.NANITE_CORE,
                     rarity = Rarity.RARE,
-                    hpBonus = 60,
-                    defenseBonus = 6,
+                    hpBonus = 65,
+                    defenseBonus = 8,
                     isEquipped = false
                 )
             )
@@ -165,10 +165,10 @@ class GameRepository(private val db: AppDatabase) {
             else -> Rarity.COMMON
         }
 
-        val prefixes = listOf("Hyper", "Apex", "Cyber", "Quantum", "Sovereign", "Pulse", "Void")
-        val weaponNames = listOf("Edge Blade", "Disruptor Cannon", "Marksman Rifle", "Plasma Saber")
-        val armorNames = listOf("Battle Shield", "Kinetic Weave", "Carbon Exosuit", "Aegis Plate")
-        val coreNames = listOf("Matrix Core", "Nanite Engine", "Overdrive Generator", "Flux Cell")
+        val prefixes = listOf("Black Ops", "Mastercraft", "DNI", "Blackjack", "Corvus", "Cyber", "Pack-A-Punch")
+        val weaponNames = listOf("Kuda SMG", "Man-O-War Rifle", "Scythe Minigun", "SVG-100 Sniper", "Purifier Flamethrower", "War Machine Launcher")
+        val armorNames = listOf("Kinetic Armor Rig", "Heat Wave Shield", "DNI Exosuit Plate", "Combat Focus Weave")
+        val coreNames = listOf("Glitch DNI Module", "Psychosis Hologram Core", "H.I.V.E. Pod Generator", "Vision Pulse Scanner")
 
         val name = when (selectedType) {
             GearType.WEAPON -> "${prefixes.random()} ${weaponNames.random()}"

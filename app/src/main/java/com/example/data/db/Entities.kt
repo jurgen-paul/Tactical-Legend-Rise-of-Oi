@@ -9,13 +9,13 @@ import com.example.data.model.Rarity
 @Entity(tableName = "player_profile")
 data class PlayerProfileEntity(
     @PrimaryKey val id: Int = 1,
-    val playerName: String = "Oi Commander",
+    val playerName: String = "DNI Commander",
     val credits: Int = 1250,
     val tacticalData: Int = 450,
     val squadLevel: Int = 1,
     val totalVictories: Int = 0,
     val unlockedMissionId: Int = 1,
-    val badgeRank: String = "Sovereign Street Oi"
+    val badgeRank: String = "Master Prestige Oistars Ops"
 )
 
 @Entity(tableName = "heroes")

@@ -22,6 +22,6 @@ dependencyResolutionManagement {
   }
 }
 
-rootProject.name = "Tactical Legend"
+rootProject.name = "Oistars Ops 1"
 
 include(":app")

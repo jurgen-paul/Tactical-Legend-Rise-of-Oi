@@ -1,6 +1,6 @@
 {
-  "name": "Tactical Legend: Rise of Oi",
-  "description": "A turn-based tactical squad RPG strategy game set in a cyberpunk dystopia. Command 'The Oi' squad, customize cyber gear, and battle in grid campaigns.",
+  "name": "Oistars Ops 1",
+  "description": "Turn-based Oistars Ops 1 tactical RPG. Command DNI Specialists (Ruin, Prophet, Battery, Outrider, Seraph), unleash Cyber Core abilities, fight Zombies in Shadows of Evil, and acquire Black Market Supply Drops!",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

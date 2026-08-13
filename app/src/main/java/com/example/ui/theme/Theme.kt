@@ -40,3 +40,10 @@ fun TacticalLegendTheme(
     )
 }
 
+@Composable
+fun BlackOpsTheme(
+    content: @Composable () -> Unit
+) {
+    TacticalLegendTheme(content = content)
+}
+

@@ -109,6 +109,10 @@ class BattleViewModel(application: Application) : AndroidViewModel(application) 
         return engine?.getValidMovePositions(unit) ?: emptyList()
     }
 
+    fun getMoveApCost(from: Position, to: Position): Int {
+        return engine?.getMoveApCost(from, to) ?: 1
+    }
+
     fun moveUnit(unitId: String, targetPos: Position) {
         SoundManager.playMoveSound()
         engine?.moveUnit(unitId, targetPos)

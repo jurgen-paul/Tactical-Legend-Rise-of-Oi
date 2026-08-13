@@ -53,34 +53,34 @@ fun VideoPlayerScreen(
         mutableStateListOf(
             GameVideoItem(
                 id = "v1",
-                title = "Rise of Oi - Official Cyber Gameplay Trailer",
+                title = "Oistars Ops 1 - Official DNI Cyber Warfare Trailer",
                 duration = "01:30",
                 category = "CINEMATIC",
-                description = "Tactical squad combat preview featuring Vanguard barrier deployment and Sniper overcharge shots in Sector 7.",
+                description = "Oistars Ops 1 Specialist tactical combat preview featuring Ruin's Gravity Spikes, Outrider's Sparrow Bow, and Prophet's Glitch in Singapore.",
                 videoUrl = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
             ),
             GameVideoItem(
                 id = "v2",
-                title = "Arasaka Spire Boss Raid Infiltration",
+                title = "Oistars Ops 1 Zombies - Shadows of Evil Morg City Reveal",
                 duration = "02:15",
-                category = "BOSS RAID",
-                description = "High-stakes tactical battle against Commander Varrus and heavily armed Sentinels.",
+                category = "ZOMBIES",
+                description = "Morg City undead outbreak! Fight through Keeper Phantoms, Margwa monsters, and unleash GobbleGum powers.",
                 videoUrl = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4"
             ),
             GameVideoItem(
                 id = "v3",
-                title = "Nanite Forge & Cybernetic Weapon Synthesis",
+                title = "Cyber Core & Specialist Loadout Customization Guide",
                 duration = "01:45",
                 category = "TUTORIAL",
-                description = "Master item forging, rarity tiers, and loadout optimization in the Oi Squad Armory.",
+                description = "Master DNI Cyber Cores, weapon crafting, rarity tiers, and loadout optimization in the Oistars Ops Armory.",
                 videoUrl = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4"
             ),
             GameVideoItem(
                 id = "v4",
-                title = "Cyber Arcade Matrix Hack Simulator",
+                title = "Blackjack Supply Drops & Black Market Unboxing",
                 duration = "01:10",
-                category = "ARCADE",
-                description = "Learn how to neutralize rogue drones and trigger EMP powerup combos for high scores.",
+                category = "BLACK MARKET",
+                description = "Learn how to spend Cryptokeys to unlock Mastercraft weapons and Specialist weapon camos.",
                 videoUrl = "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoylikes.mp4"
             )
         )

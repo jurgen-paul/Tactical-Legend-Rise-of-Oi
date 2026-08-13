@@ -1,13 +1,14 @@
-# 🎮 Tactical Legend: Rise of Oi — Complete Game & Systems Guide
+# 🎮 Oistars Ops 1 — Cyber Warfare Game & Systems Guide
 
-Welcome to the definitive guide for **Tactical Legend: Rise of Oi**, a feature-rich turn-based tactical squad RPG set in a dystopian cyberpunk metropolis.
+Welcome to the definitive guide for **Oistars Ops 1**, a feature-rich turn-based tactical squad RPG set in the dystopian 2065 military world of Oistars Ops.
 
 ---
 
 ## 📑 Table of Contents
 1. [Overview](#-overview)
 2. [Squad Roster & Operative Classes](#-squad-roster--operative-classes)
-3. [Grid Combat & Tactical Battle Engine](#-grid-combat--tactical-battle-engine)
+3. [Squad Manager & Deployment Matrix](#-squad-manager--deployment-matrix)
+4. [Grid Combat & Tactical Battle Engine](#-grid-combat--tactical-battle-engine)
 4. [Cyber Cinema & Video Player Module](#-cyber-cinema--video-player-module)
 5. [Cyber Arcade Hack Simulator](#-cyber-arcade-hack-simulator)
 6. [Nanite Forge & Armory Loadouts](#-nanite-forge--armory-loadouts)
@@ -45,7 +46,18 @@ Command five specialized operative classes, each possessing unique base attribut
 
 ---
 
-## ⚔️ Grid Combat & Tactical Battle Engine
+## 👥 Squad Manager & Deployment Matrix
+
+The **Squad Manager** (`SquadManagerScreen.kt`) serves as the operational command hub for managing your operatives before engaging in tactical battle.
+
+### Key Capabilities
+- 🛡️ **Interactive Deployment Matrix**: Easily toggle operatives between `DEPLOYED` (active combat squad) and `RESERVE` status with a single tap. Enforces a minimum 1 operative squad rule to prevent deploying empty squads.
+- ⚡ **Real-Time Squad Power Telemetry**: Dynamically calculates total squad combat power (`PWR`) by evaluating operative levels, base HP, attack power, defense, and equipped weapons, kinetic armors, and nanite cores.
+- 🎯 **Target Mission Pre-Deployment Launcher**: Select your next unlocked campaign mission directly from the Squad Manager. Compares your current deployed Squad Power against the mission's recommended power requirement with visual color cues.
+- 🔬 **Operative Telemetry Spec Sheet**: Tap any operative card to open a detailed inspection modal showing full lore briefings, base vs gear stat breakdowns, AP costs, range, mobility, and tactical skill details.
+- 🔍 **Roster Filtering & Sorting**: Filter units by deployment status (`ALL UNITS`, `DEPLOYED`, `RESERVES`) or class role (`VANGUARD`, `SNIPER`, `CIPHER`, `MEDIC`, `SAMURAI`).
+
+---
 
 ### Combat Mechanics
 - **Grid Positioning**: Battles occur on an 8x6 tactical grid with movement range limits based on class AP.
