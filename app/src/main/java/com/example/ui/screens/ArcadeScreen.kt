@@ -62,6 +62,7 @@ data class ArcadeScoreRecord(
 fun ArcadeScreen(
     profile: PlayerProfileEntity?,
     onClaimRewards: (Int, Int) -> Unit,
+    onLaunchAegisFps: () -> Unit = {},
     modifier: Modifier = Modifier
 ) {
     var gameState by remember { mutableStateOf(ArcadeGameState.MENU) }
@@ -243,7 +244,8 @@ fun ArcadeScreen(
                         onStartGame = { diff ->
                             difficultyMultiplier = diff
                             gameState = ArcadeGameState.PLAYING
-                        }
+                        },
+                        onLaunchAegisFps = onLaunchAegisFps
                     )
                 }
 
@@ -565,7 +567,8 @@ fun ScoreStatBox(label: String, value: String, color: Color) {
 fun ArcadeMenuTab(
     highScore: Int,
     highScoresList: List<ArcadeScoreRecord>,
-    onStartGame: (Float) -> Unit
+    onStartGame: (Float) -> Unit,
+    onLaunchAegisFps: () -> Unit = {}
 ) {
     var selectedDifficulty by remember { mutableStateOf(1.0f) }
 
@@ -573,6 +576,149 @@ fun ArcadeMenuTab(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
+        // Featured 3D FPS Shooter Card
+        item {
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .border(2.dp, CyberPrimary, RoundedCornerShape(16.dp))
+                    .testTag("aegis_fps_launcher_card"),
+                colors = CardDefaults.cardColors(containerColor = CyberSurface),
+                shape = RoundedCornerShape(16.dp)
+            ) {
+                Column(modifier = Modifier.padding(18.dp)) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Box(
+                                modifier = Modifier
+                                    .size(42.dp)
+                                    .clip(CircleShape)
+                                    .background(CyberPrimary.copy(alpha = 0.2f)),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                Icon(
+                                    imageVector = Icons.Default.VideogameAsset,
+                                    contentDescription = null,
+                                    tint = CyberPrimary,
+                                    modifier = Modifier.size(24.dp)
+                                )
+                            }
+                            Spacer(modifier = Modifier.width(12.dp))
+                            Column {
+                                Row(verticalAlignment = Alignment.CenterVertically) {
+                                    Text(
+                                        text = "AEGIS 3D FPS ENGINE",
+                                        color = CyberPrimary,
+                                        fontSize = 16.sp,
+                                        fontWeight = FontWeight.Black
+                                    )
+                                    Spacer(modifier = Modifier.width(6.dp))
+                                    Surface(
+                                        color = CyberPrimary.copy(alpha = 0.2f),
+                                        shape = RoundedCornerShape(4.dp)
+                                    ) {
+                                        Text(
+                                            text = "RAYCASTING 3D",
+                                            color = CyberPrimary,
+                                            fontSize = 9.sp,
+                                            fontWeight = FontWeight.Black,
+                                            modifier = Modifier.padding(horizontal = 4.dp, vertical = 2.dp)
+                                        )
+                                    }
+                                }
+                                Text(
+                                    text = "First-Person Raycasting Shooter with pure game core",
+                                    color = CyberSubtext,
+                                    fontSize = 11.sp
+                                )
+                            }
+                        }
+                    }
+
+                    Spacer(modifier = Modifier.height(12.dp))
+
+                    Text(
+                        text = "Real-time 60FPS raycaster engine featuring hitscan weapon ballistics, hostile patrol AI, D-Pad movement, swipe look, crosshair tracking, and minimap radar.",
+                        color = CyberOnSurface.copy(alpha = 0.85f),
+                        fontSize = 12.sp
+                    )
+
+                    Spacer(modifier = Modifier.height(14.dp))
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Surface(
+                            color = CyberSurfaceVariant,
+                            shape = RoundedCornerShape(8.dp),
+                            modifier = Modifier.weight(1f)
+                        ) {
+                            Column(
+                                modifier = Modifier.padding(8.dp),
+                                horizontalAlignment = Alignment.CenterHorizontally
+                            ) {
+                                Text("WEAPON", color = CyberSubtext, fontSize = 9.sp, fontWeight = FontWeight.Bold)
+                                Text("34 DMG • 0.35s", color = CyberPrimary, fontSize = 11.sp, fontWeight = FontWeight.Black)
+                            }
+                        }
+
+                        Spacer(modifier = Modifier.width(8.dp))
+
+                        Surface(
+                            color = CyberSurfaceVariant,
+                            shape = RoundedCornerShape(8.dp),
+                            modifier = Modifier.weight(1f)
+                        ) {
+                            Column(
+                                modifier = Modifier.padding(8.dp),
+                                horizontalAlignment = Alignment.CenterHorizontally
+                            ) {
+                                Text("SECTOR ENEMIES", color = CyberSubtext, fontSize = 9.sp, fontWeight = FontWeight.Bold)
+                                Text("3 Elite Drones", color = CyberSecondary, fontSize = 11.sp, fontWeight = FontWeight.Black)
+                            }
+                        }
+
+                        Spacer(modifier = Modifier.width(8.dp))
+
+                        Surface(
+                            color = CyberSurfaceVariant,
+                            shape = RoundedCornerShape(8.dp),
+                            modifier = Modifier.weight(1f)
+                        ) {
+                            Column(
+                                modifier = Modifier.padding(8.dp),
+                                horizontalAlignment = Alignment.CenterHorizontally
+                            ) {
+                                Text("REWARD", color = CyberSubtext, fontSize = 9.sp, fontWeight = FontWeight.Bold)
+                                Text("+350 CR / +150 DATA", color = CyberGreen, fontSize = 11.sp, fontWeight = FontWeight.Black)
+                            }
+                        }
+                    }
+
+                    Spacer(modifier = Modifier.height(16.dp))
+
+                    Button(
+                        onClick = onLaunchAegisFps,
+                        colors = ButtonDefaults.buttonColors(containerColor = CyberSecondary),
+                        shape = RoundedCornerShape(10.dp),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(48.dp)
+                            .testTag("launch_aegis_fps_button")
+                    ) {
+                        Icon(Icons.Default.PlayArrow, contentDescription = null, tint = Color.White)
+                        Spacer(modifier = Modifier.width(6.dp))
+                        Text("LAUNCH AEGIS 3D FPS SIMULATOR", color = Color.White, fontWeight = FontWeight.Black, fontSize = 13.sp)
+                    }
+                }
+            }
+        }
+
         item {
             Card(
                 modifier = Modifier.fillMaxWidth(),

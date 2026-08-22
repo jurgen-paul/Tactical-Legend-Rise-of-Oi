@@ -11,6 +11,7 @@ val CyberPrimary = Color(0xFFFF5500)         // Iconic BO3 Ember Orange / Gold P
 val CyberSecondary = Color(0xFF00E5FF)       // DNI Direct Neural Interface Electric Cyan
 val CyberTertiary = Color(0xFFFFB703)        // Black Market Cryptokey Amber Gold
 val CyberGreen = Color(0xFF05FF69)          // Tactical Ready Matrix Emerald
+val CyberRed = Color(0xFFFF334B)            // BO3 Tactical Red / Danger
 val CyberPurple = Color(0xFFA855F7)         // Zombies Element 115 Violet
 val CyberBorder = Color(0xFF283548)          // Glowing Cyber Steel Border
 val CyberYellow = Color(0xFFFFB703)          // BO3 Tactical Hazard Gold

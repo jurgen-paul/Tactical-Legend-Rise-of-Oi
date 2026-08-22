@@ -39,7 +39,8 @@ fun MainMenuScreen(
     onNavigateToVideoPlayer: () -> Unit,
     onNavigateToStore: () -> Unit,
     onNavigateToCodex: () -> Unit,
-    onLaunchMission: (Int) -> Unit
+    onLaunchMission: (Int) -> Unit,
+    onNavigateToAegisFps: () -> Unit = {}
 ) {
     val currentMissionId = profile?.unlockedMissionId ?: 1
     val latestMission = CampaignData.missions.find { it.id == currentMissionId } ?: CampaignData.missions.first()
@@ -277,8 +278,8 @@ fun MainMenuScreen(
                     )
 
                     HubButton(
-                        title = "DNI Specialists",
-                        subtitle = "5 Operatives",
+                        title = "The Oi Squad",
+                        subtitle = "9 Specialists & Campaign",
                         icon = Icons.Default.Groups,
                         color = CyberSecondary,
                         modifier = Modifier
@@ -349,14 +350,25 @@ fun MainMenuScreen(
                     horizontalArrangement = Arrangement.spacedBy(12.dp)
                 ) {
                     HubButton(
-                        title = "Black Market Supply Drops",
-                        subtitle = "Blackjack Cryptokeys & Bribes",
+                        title = "Black Market Drops",
+                        subtitle = "Cryptokeys & Bribes",
                         icon = Icons.Default.ShoppingCart,
                         color = CyberYellow,
                         modifier = Modifier
-                            .fillMaxWidth()
+                            .weight(1f)
                             .testTag("nav_store_button"),
                         onClick = onNavigateToStore
+                    )
+
+                    HubButton(
+                        title = "Aegis 3D FPS Simulator",
+                        subtitle = "60FPS Raycasting Core",
+                        icon = Icons.Default.VideogameAsset,
+                        color = CyberSecondary,
+                        modifier = Modifier
+                            .weight(1f)
+                            .testTag("nav_aegis_fps_button"),
+                        onClick = onNavigateToAegisFps
                     )
                 }
             }

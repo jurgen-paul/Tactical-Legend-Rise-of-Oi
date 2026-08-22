@@ -134,6 +134,9 @@ fun MainAppContent(
                     onLaunchMission = { missionId ->
                         battleViewModel.startMission(missionId, heroes, gearList)
                         navController.navigate(Screen.Battle.createRoute(missionId))
+                    },
+                    onNavigateToAegisFps = {
+                        navController.navigate(Screen.AegisFps.route)
                     }
                 )
             }
@@ -190,6 +193,20 @@ fun MainAppContent(
                 ArcadeScreen(
                     profile = profile,
                     onClaimRewards = { credits, data ->
+                        mainViewModel.claimArcadeRewards(credits, data)
+                    },
+                    onLaunchAegisFps = {
+                        navController.navigate(Screen.AegisFps.route)
+                    }
+                )
+            }
+
+            composable(Screen.AegisFps.route) {
+                AegisFpsScreen(
+                    onNavigateBack = {
+                        navController.popBackStack()
+                    },
+                    onRewardEarned = { credits, data ->
                         mainViewModel.claimArcadeRewards(credits, data)
                     }
                 )

@@ -16,4 +16,5 @@ sealed class Screen(val route: String, val title: String, val icon: ImageVector)
     object Battle : Screen("battle/{missionId}", "Tactical Battle", Icons.Default.SportsEsports) {
         fun createRoute(missionId: Int) = "battle/$missionId"
     }
+    object AegisFps : Screen("aegis_fps", "Aegis 3D FPS", Icons.Default.VideogameAsset)
 }

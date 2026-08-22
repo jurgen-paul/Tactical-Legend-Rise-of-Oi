@@ -25,7 +25,7 @@ class GameRepository(private val db: AppDatabase) {
                 )
             )
 
-            // Seed 5 Black Ops III Specialist Operatives
+            // Seed 9 Black Ops III / The Oi Specialist Operatives
             val defaultHeroes = listOf(
                 HeroEntity(
                     id = "hero_vanguard",
@@ -37,14 +37,6 @@ class GameRepository(private val db: AppDatabase) {
                     equippedArmorId = "gear_vest_1"
                 ),
                 HeroEntity(
-                    id = "hero_sniper",
-                    name = "Outrider (Alessandra)",
-                    heroClass = HeroClass.SNIPER,
-                    level = 1,
-                    isInSquad = true,
-                    equippedWeaponId = "gear_rifle_1"
-                ),
-                HeroEntity(
                     id = "hero_cipher",
                     name = "Prophet (David Wilkes)",
                     heroClass = HeroClass.CIPHER,
@@ -53,16 +45,52 @@ class GameRepository(private val db: AppDatabase) {
                     equippedCoreId = "gear_chip_1"
                 ),
                 HeroEntity(
+                    id = "hero_sniper",
+                    name = "Outrider (Alessandra)",
+                    heroClass = HeroClass.SNIPER,
+                    level = 1,
+                    isInSquad = true,
+                    equippedWeaponId = "gear_rifle_1"
+                ),
+                HeroEntity(
                     id = "hero_medic",
                     name = "Battery (Erin Baker)",
                     heroClass = HeroClass.MEDIC,
                     level = 1,
-                    isInSquad = false
+                    isInSquad = true
                 ),
                 HeroEntity(
                     id = "hero_samurai",
                     name = "Seraph (He Zhen-Zhen)",
                     heroClass = HeroClass.SAMURAI,
+                    level = 1,
+                    isInSquad = false
+                ),
+                HeroEntity(
+                    id = "hero_nomad",
+                    name = "Nomad (Tavo Rojas)",
+                    heroClass = HeroClass.CIPHER,
+                    level = 1,
+                    isInSquad = false
+                ),
+                HeroEntity(
+                    id = "hero_spectre",
+                    name = "Spectre (Classified)",
+                    heroClass = HeroClass.SAMURAI,
+                    level = 1,
+                    isInSquad = false
+                ),
+                HeroEntity(
+                    id = "hero_reaper",
+                    name = "Reaper (EWR-115)",
+                    heroClass = HeroClass.VANGUARD,
+                    level = 1,
+                    isInSquad = false
+                ),
+                HeroEntity(
+                    id = "hero_firebreak",
+                    name = "Firebreak (Krystof Hejek)",
+                    heroClass = HeroClass.VANGUARD,
                     level = 1,
                     isInSquad = false
                 )
@@ -121,6 +149,36 @@ class GameRepository(private val db: AppDatabase) {
                 )
             )
             db.gearDao().insertGear(starterGear)
+        } else {
+            // Ensure all 9 Black Ops III specialists are present even if DB was created previously
+            val currentHeroes = allHeroes.firstOrNull() ?: emptyList()
+            val existingIds = currentHeroes.map { it.id }.toSet()
+            val additionalHeroes = listOf(
+                HeroEntity(id = "hero_vanguard", name = "Ruin (Donnie Walsh)", heroClass = HeroClass.VANGUARD, level = 1, isInSquad = true),
+                HeroEntity(id = "hero_cipher", name = "Prophet (David Wilkes)", heroClass = HeroClass.CIPHER, level = 1, isInSquad = true),
+                HeroEntity(id = "hero_sniper", name = "Outrider (Alessandra)", heroClass = HeroClass.SNIPER, level = 1, isInSquad = true),
+                HeroEntity(id = "hero_medic", name = "Battery (Erin Baker)", heroClass = HeroClass.MEDIC, level = 1, isInSquad = true),
+                HeroEntity(id = "hero_samurai", name = "Seraph (He Zhen-Zhen)", heroClass = HeroClass.SAMURAI, level = 1, isInSquad = false),
+                HeroEntity(id = "hero_nomad", name = "Nomad (Tavo Rojas)", heroClass = HeroClass.CIPHER, level = 1, isInSquad = false),
+                HeroEntity(id = "hero_spectre", name = "Spectre (Classified)", heroClass = HeroClass.SAMURAI, level = 1, isInSquad = false),
+                HeroEntity(id = "hero_reaper", name = "Reaper (EWR-115)", heroClass = HeroClass.VANGUARD, level = 1, isInSquad = false),
+                HeroEntity(id = "hero_firebreak", name = "Firebreak (Krystof Hejek)", heroClass = HeroClass.VANGUARD, level = 1, isInSquad = false)
+            ).filter { it.id !in existingIds }
+
+            if (additionalHeroes.isNotEmpty()) {
+                db.heroDao().insertHeroes(additionalHeroes)
+            }
+        }
+    }
+
+    suspend fun setHeroSquadStatus(heroId: String, inSquad: Boolean) {
+        db.heroDao().updateSquadStatus(heroId, inSquad)
+    }
+
+    suspend fun applySquadPreset(assignedHeroIds: List<String>, allHeroIds: List<String>) {
+        val assignedSet = assignedHeroIds.toSet()
+        allHeroIds.forEach { heroId ->
+            db.heroDao().updateSquadStatus(heroId, heroId in assignedSet)
         }
     }
 

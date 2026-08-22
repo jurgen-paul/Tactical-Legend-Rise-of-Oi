@@ -55,6 +55,18 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    fun setHeroSquadStatus(heroId: String, inSquad: Boolean) {
+        viewModelScope.launch {
+            repository.setHeroSquadStatus(heroId, inSquad)
+        }
+    }
+
+    fun applySquadPreset(assignedHeroIds: List<String>, allHeroIds: List<String>) {
+        viewModelScope.launch {
+            repository.applySquadPreset(assignedHeroIds, allHeroIds)
+        }
+    }
+
     fun equipItem(heroId: String, gear: GearEntity) {
         viewModelScope.launch {
             repository.equipItem(heroId, gear)
